@@ -1,8 +1,19 @@
 const multer = require('koa-multer');
 const path = require('path');
+
+
+let storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, path.resolve(__dirname, '../../uploads'));
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname);
+	}
+});
+
 function upload(opts) {
-	return async (ctx, next) => {
-		console.log(this.req.files);
+	return async(ctx, next) => {
+		console.log(ctx.req.files);
 		ctx.set('Access-Control-Allow-Origin', '*');
 		ctx.set('Access-Control-Request-Headers', '*');
 		ctx.set('Access-Control-Request-Method', '*');
@@ -13,6 +24,7 @@ function upload(opts) {
 
 module.exports = {
 	'post /upload': [multer({
-		dest: path.resolve(__dirname, '../../uploads')
-	}).single('picture'), upload()]
+		storage,
+		limits: '5MB'
+	}).single('images'), upload()]
 };
