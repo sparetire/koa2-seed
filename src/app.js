@@ -2,6 +2,8 @@ const Koa = require('koa');
 const http = require('http');
 const https = require('https');
 const helmet = require('koa-helmet');
+const serve = require('koa-static');
+const path = require('path');
 const controller = require('./controller');
 const router = require('koa-router')();
 const cors = require('./middleware/cors');
@@ -18,6 +20,8 @@ if (process.env.NODE_ENV === 'dev') {
 } else {
 	app.use(helmet());
 }
+
+app.use(serve(path.resolve(__dirname, '../public')));
 
 app.use(controller(router))
 	.use(router.allowedMethods());

@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/sparetire/koa2-seed#readme",
   "dependencies": {
-    "koa": "^2.0.0",
-    "koa-bodyparser": "^3.2.0",
-    "koa-helmet": "^2.0.0",
+    "koa": "^2.1.0",
+    "koa-bodyparser": "^4.1.0",
+    "koa-helmet": "^3.1.0",
     "koa-multer": "^1.0.1",
-    "koa-router": "^7.1.0",
+    "koa-router": "^7.0.1",
     "koa-static": "^3.0.0"
   },
   "devDependencies": {

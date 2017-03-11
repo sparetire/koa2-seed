@@ -5,9 +5,14 @@ function demo(opts) {
 		console.log(ctx.request.body);
 		console.log(ctx.params.id);
 		console.log(ctx.request.query.name);
-		ctx.body = {
-			name: 'demo'
-		};
+		let data = await new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve({
+					msg: 'Hello'
+				});
+			}, 5000);
+		});
+		ctx.body = data;
 	};
 }
 
