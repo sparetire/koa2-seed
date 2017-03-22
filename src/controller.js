@@ -3,14 +3,9 @@ const path = require('path');
 const CONTROLLER_DIR = path.resolve(__dirname, './controllers');
 
 function addMapping(router, mapping) {
-	let pathname = '',
-		method = '',
-		tmp = null,
-		param = null;
+	let pathname = '', method = '', param = null;
 	for (let key in mapping) {
-		tmp = key.split(/\s+/);
-		method = tmp[0];
-		pathname = tmp[1];
+		[method, pathname] = key.split(/\s+/);
 		param = Array.prototype.concat(pathname, mapping[key]);
 		router[method].apply(router, param);
 	}
@@ -21,11 +16,11 @@ function addControllers(router, dir) {
 	let jsFiles = files.filter(f => f.endsWith('.js'));
 	let mapping = null;
 
-	for (let f in jsFiles) {
-		console.log(`processing controller: ${jsFiles[f]}...`);
-		mapping = require(path.resolve(CONTROLLER_DIR, jsFiles[f]));
+	jsFiles.forEach(f => {
+		console.log(`processing controller: ${f}...`);
+		mapping = require(path.resolve(CONTROLLER_DIR, f));
 		addMapping(router, mapping);
-	}
+	});
 }
 
 module.exports = function (router, dir) {

@@ -27,8 +27,8 @@ app.use(controller(router));
 	// .use(router.allowedMethods());
 
 app.on('error', (err, ctx) => {
-	console.log('GLOBAL-ERROR:');
-	console.log(err);
+	console.error('GLOBAL-ERROR:');
+	console.error(err);
 });
 
 app.listen(config.port);
