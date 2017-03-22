@@ -23,8 +23,8 @@ if (process.env.NODE_ENV === 'dev') {
 
 app.use(serve(path.resolve(__dirname, '../public')));
 
-app.use(controller(router))
-	.use(router.allowedMethods());
+app.use(controller(router));
+	// .use(router.allowedMethods());
 
 app.on('error', (err, ctx) => {
 	console.log('GLOBAL-ERROR:');
