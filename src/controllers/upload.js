@@ -12,7 +12,7 @@ let storage = multer.diskStorage({
 });
 
 function upload(opts) {
-	return async(ctx, next) => {
+	return async (ctx, next) => {
 		console.log(ctx.req.files);
 		ctx.set('Access-Control-Allow-Origin', '*');
 		ctx.set('Access-Control-Request-Headers', '*');
