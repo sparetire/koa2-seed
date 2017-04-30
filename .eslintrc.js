@@ -1,10 +1,8 @@
 module.exports = {
 	env: {
-		'browser': true,
-		'es6': true,
 		'node': true,
+		'es6': true,
 		'commonjs': true,
-		'amd': true,
 		'jquery': true
 	},
 	parser: 'babel-eslint',
